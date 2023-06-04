@@ -51,7 +51,8 @@
 			<img id="logo" src="<?php the_field('logo', 'option'); ?>"/>
 			</div>
 			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'sanisidro' ); ?></button>
+			<a href="javascript:void(0)" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><img src="<?php echo get_template_directory_uri() ;?>/img/menu.png"/></a>
+				<button class="menu-toggle" id="menu-button" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'sanisidro' ); ?></button>
 				<?php
 				wp_nav_menu(
 					array(

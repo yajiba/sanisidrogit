@@ -1064,6 +1064,7 @@ h1.heading {
 	text-transform: uppercase;
 	font-weight: 800;
 	color: #4169e1;
+	margin-bottom: 0px !important;
 }
 .green-divider {
 	border-bottom: 3px solid #d01c1f;
@@ -1103,10 +1104,23 @@ a.btn.btn-primary.view-all {
 	position: relative;
 }
 .related-content.less-than-4 {
-    height: 300px;
+   /*  height: 300px; */
+	height: 100%;
+}
+.related-content.videos .post-title {
+    position: absolute;
+}
+section#latest-videos iframe, #video-holder iframe {
+    border-radius: 20px;
+	width: 100%;
+	height: 100%;
 }
 .related-content.more-than-4 {
-    height: auto;
+    /* height: auto; */
+	height: 100%;
+}
+.col-md-7.related a {
+    text-decoration: none;
 }
 .related-content h3.post-title {
     width: 80%;
@@ -1161,16 +1175,21 @@ a.btn.btn-primary.view-all {
 }
 .event-holder .event-content .event-image {
 	border-radius: 20px;
-	min-height: 250px;
-	background: url('../sanisidro/img/events.jpg');
-    background-size: cover;
-    background-position: center;
+	height: 250px;
+}
+.event-image img {
+    object-fit: cover;
+    width: 100%;
+    width: 100%;
+    border-radius: 20px;
+    height: 250px;
 }
 .event-content {
     text-align: center;
 }
 p.event-excerpt {
     font-size: 14px;
+	height: 75px;
 }
 h4.event-title {
     font-size: 16px;
@@ -1183,12 +1202,9 @@ p.post-meta {
     color: #6c6363;
 }
 #video-holder {
-	border: 1px solid #ccc;
 	border-radius: 20px;
-	min-height: 500px;
-	background: url(../sanisidro/img/tourism.jpg);
-    background-size: cover;
-    background-position: center;
+	height: 600px;
+	
 	position: relative;
 }
 .play-button {
@@ -1257,7 +1273,7 @@ section#contact input, section#contact textarea {
 }
 section#contact input[type="submit"] {
 	background: #4169e1;
-	width: 93%;
+	width: 100%;
 	text-transform: uppercase;
 	color: #fff;
 	font-weight: bold;
@@ -1267,6 +1283,10 @@ section#contact textarea {
 }
 section#contact form {
     margin-left: 50px;
+	width: 80%;
+}
+section#contact form label {
+	width: 100%;
 }
 #contact-right {
 	display:flex
@@ -1294,14 +1314,20 @@ span.wpcf7-spinner {
     display: flex;
     margin: auto;
 }
+a.menu-toggle {
+	display: none;
+}
 @media screen and (max-width: 768px) {
-	.col-md-4.featured {
+	.col-md-5.featured {
 		width: 100%;
 	}
 	.related {
-		grid-template-columns: repeat(1,100%);
-		gap: 40px;
+		grid-template-columns: repeat(2,50%);
+		gap: 20px;
+	}
+	.col-md-7.related {
 		width: 100%;
+		margin-top: 40px
 	}
 	.content-holder {
 		flex-direction: column;
@@ -1309,7 +1335,86 @@ span.wpcf7-spinner {
 	.related .related-content {
 		border: 1px solid #ccc;
 		border-radius: 20px;
-		min-height: 168px;
+		height: 250px;
+	}
+	#tourism h3.post-title {
+    	width: 70%;
+	}
+	section#contact .col-md-6 {
+		width: 100%;
+	}
+	section#contact form {
+		margin-left: 0px;
+		width: 100%;
+	}
+}
+@media screen and (max-width: 425px) {
+	.container {
+		padding: 0px !important
+	}
+	.related, .event-holder {
+		grid-template-columns: repeat(1,100%);
+		gap: 20px;
+	}
+	.container-heading {
+		margin-top: 50px;
+	}
+	div#banner {
+		margin-bottom: 180px;
+	}
+	a.menu-toggle {
+		display: block;
+		width: 35px;
+	}
+	div#logo-holder {
+		margin-right: 22px;
+	}
+	div#logo-holder {
+		margin-right: 22px;
+		width: 80%;
+	}
+	#menu-button {
+		display: none;
 	}
 	
+}
+@media screen and (max-width: 375px) {
+	.site-info {
+		display: block;
+		height: auto;
+	}
+	footer#colophon {
+		height: unset;
+	}
+	.copyright {
+		color: #fff;
+		font-weight: normal;
+		font-size: 8px;
+	}
+	div#footer-nav ul#primary-menu li {
+		margin-right: 18px;
+	}
+	div#footer-nav ul li a {
+		font-size: 12px;
+	}
+	div#footer-socials ul {
+		justify-content: center;
+	}
+	div#footer-socials ul li img {
+		width: 20px;
+	}
+	div#footer-nav {
+		height: 50px;
+	}
+	h1.heading {
+		font-size: 22px;
+		
+	}
+	.container-heading {
+		margin-bottom: 10px;
+	}
+	h3.post-title {
+		width: 70%;
+		font-size: 16px;
+	}
 }

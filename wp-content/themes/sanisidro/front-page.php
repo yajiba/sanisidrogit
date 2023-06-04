@@ -15,7 +15,7 @@ get_header();
 		<main id="main" class="site-main">
             <div id="banner">
                 <?php
-					echo do_shortcode('[smartslider3 slider="2"]');
+					echo do_shortcode('[smartslider3 slider="3"]');
 				?>
             </div>
 			<section id="latest-news">
@@ -26,7 +26,7 @@ get_header();
 							<a href="#" class="btn btn-primary view-all">View All</a>
 						</div>
 						<div class="green-divider"></div>
-						<?php echo do_shortcode('[latest_post type="news"]') ?>
+						<?php echo do_shortcode('[latest_post type="4"]') ?>
 					</div>
 				</div>
 			</section>
@@ -39,25 +39,7 @@ get_header();
 							<a href="#" class="btn btn-primary view-all">View All</a>
 						</div>
 						<div class="green-divider"></div>
-						<div class="content-holder">
-							<div class="col-md-12 event-holder">
-								<div class="event-content">
-									<div class="event-image"></div>
-									<h4 class="event-title">New Roads open for Residents</h4>
-									<p class="event-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-								</div>
-								<div class="event-content">
-									<div class="event-image"></div>
-									<h4 class="event-title">New Roads open for Residents</h4>
-									<p class="event-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-								</div>
-								<div class="event-content">
-									<div class="event-image"></div>
-									<h4 class="event-title">New Roads open for Residents</h4>
-									<p class="event-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-								</div>
-							</div>
-						</div>
+						<?php echo do_shortcode('[latest_events]') ?>
 					</div>
 				</div>
 			</section>
@@ -69,7 +51,9 @@ get_header();
 							<a href="#" class="btn btn-primary view-all">View All</a>
 						</div>
 						<div class="green-divider"></div>
-						<div class="content-holder">
+						<?php echo do_shortcode('[latest_videos]') ?>
+						
+						<!-- <div class="content-holder">
 							<div class="col-md-5 featured">
 								<div class="image-holder"></div>
 								<h3 class="post-title">Batobato Village in San Isidro Town to get New Barangal Hall</h3>
@@ -99,7 +83,7 @@ get_header();
 									<h3 class="post-title">Batobato Village in San Isidro Town to get New Barangal Hall</h3>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</section>
@@ -111,14 +95,7 @@ get_header();
 							<a href="#" class="btn btn-primary view-all">View All</a>
 						</div>
 						<div class="green-divider"></div>
-						<div class="content-holder">
-							<div class="col-md-12">
-								<div id="video-holder">
-								</div>
-								<h3 class="post-title">Batobato Village in San Isidro Town to get New Barangal Hall</h3>
-							</div>
-
-						</div>
+						<?php echo do_shortcode('[latest_tourism]') ?>
 					</div>
 				</div>
 			</section>

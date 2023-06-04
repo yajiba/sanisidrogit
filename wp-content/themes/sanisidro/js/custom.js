@@ -12,4 +12,12 @@ jQuery(function($){
             $('#master-header').css('border-bottom','unset');
         }
     });
+    $('a.menu-toggle').click(function(){
+        var x = document.getElementById("primary-menu");
+        if (x.style.display === "none") {
+            x.style.display = "flex";
+          } else {
+            x.style.display = "none";
+          }
+    });
   });

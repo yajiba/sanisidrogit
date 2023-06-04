@@ -236,10 +236,11 @@ function latest_post($atts) {
 				<?php
 					$query = new WP_Query(
 						array(
-							'post_type' => $type,
+							//'post_type' => $type,
 							'post_status' => 'publish',
 							"numberposts" => 1,
 							'post_per_page' => 1,
+							'cat' => $type,
 							'order'           => 'DESC',
 						)
 					);
@@ -263,40 +264,203 @@ function latest_post($atts) {
 						}
 				?>
 			</div>
-							<div class="col-md-7 related">
-							<?php
-								$query = new WP_Query(
-									array(
-										'post_type' => $type,
-										'post_status' => 'publish',
-										'post_per_page' => 5,
-										'order'           => 'DESC',
-									)
-								);
+			<div class="col-md-7 related">
+				<?php
+					$query = new WP_Query(
+						array(
+							'cat' => $type,
+							'post_status' => 'publish',
+							'post_per_page' => 5,
+							'order'           => 'DESC',
+						)
+					);
 										
-									if($query->post_count > 0){
-											$count = 1;
-									foreach($query->posts as  $related) {
-										$related_img = get_the_post_thumbnail_url($related->ID,'thumbnail');
-										$description = substr(wp_strip_all_tags($related->post_content), 0, 250).'...';
-										$permalink = get_permalink($related->ID);
-										if($count != 1){
-									?>
+					if($query->post_count > 0){
+						$count = 1;
+						foreach($query->posts as  $related) {
+							$related_img = get_the_post_thumbnail_url($related->ID,'thumbnail');
+							$description = substr(wp_strip_all_tags($related->post_content), 0, 250).'...';
+							$permalink = get_permalink($related->ID);
+							if($count != 1){?>
+								<a href="<?php echo $permalink; ?>">
 									<div class="related-content <?php if($query->post_count > 4) { echo 'more-than-4';}else { echo 'less-than-4'; }?>" >
 										<img src="<?php echo $related_img; ?>">
 										<div class="overlay"></div>
 										<h3 class="post-title"><?php  echo $related->post_title ;?></h3>
 									</div>
+								</a>
 									
-								<?php }
-								$count++;
-									}
-									} ?>
-							</div>
-						</div>
+							<?php }
+						$count++;
+						}
+					} ?>
+			</div>
+		</div>
 		<?php
       
    
 	 
+   return do_shortcode(ob_get_clean());
+}
+
+add_shortcode('latest_videos', 'latest_videos');
+function latest_videos($atts) { 
+	global $post;
+	 ob_start();
+	
+	 ?>
+		<div class="content-holder">
+			<div class="col-md-5 featured">
+				<?php
+					$query = new WP_Query(
+						array(
+							'post_type' => 'videos',
+							'post_status' => 'publish',
+							"numberposts" => 1,
+							'post_per_page' => 1,
+							'order'           => 'DESC',
+						)
+					);
+							
+					if($query->post_count > 0){
+							
+						foreach($query->posts as  $featured) {
+							
+							$img_url = get_the_post_thumbnail_url($featured->ID,'thumbnail');
+							$description = substr(wp_strip_all_tags($featured->post_content), 0, 250).'...';
+							$permalink = get_permalink($featured->ID);
+						?>
+							<div class="image-holder">
+							
+							<iframe width="100%" height="100%" src="<?php echo the_field('video_url',$featured->ID);?>" controls></iframe>
+							</div>
+							<h3 class="post-title"><?php  echo $featured->post_title ;?></h3>
+							<p class="post-meta"><?php 	echo  date('F j, Y', strtotime($featured->post_date));?></p>
+							<p class="excerpt"><?php echo $description ?></p>
+							<a href="<?php echo $permalink; ?>" class="btn btn-primary view-all">Read More</a>
+							<?php break; 
+						} 
+							
+					}
+				?>
+			</div>
+			<div class="col-md-7 related">
+				<?php
+					$query = new WP_Query(
+						array(
+							'post_type' => 'videos',
+							'post_status' => 'publish',
+							'post_per_page' => 5,
+							'order'           => 'DESC',
+						)
+					);
+										
+					if($query->post_count > 0){
+						$count = 1;
+						foreach($query->posts as  $related) {
+							$related_img = get_the_post_thumbnail_url($related->ID,'thumbnail');
+							$description = substr(wp_strip_all_tags($related->post_content), 0, 250).'...';
+							$permalink = get_permalink($related->ID);
+							if($count != 1){?>
+							<a href="<?php echo $permalink; ?>">
+								<div class="related-content <?php if($query->post_count > 4) { echo 'more-than-4';}else { echo 'less-than-4'; }?> videos" >
+									<iframe width="100%" height="100%" src="<?php echo the_field('video_url',$related->ID);?>" controls></iframe>
+									<div class="overlay"></div>
+									<h3 class="post-title"><?php  echo $related->post_title ;?></h3>
+								</div>
+							</a>
+									
+						<?php }
+						$count++;
+						}
+					} ?>
+			</div>
+		</div>
+	<?php
+   return do_shortcode(ob_get_clean());
+}
+
+add_shortcode('latest_events', 'latest_events');
+function latest_events($atts) { 
+	 ob_start();
+	 ?>
+		<div class="content-holder">
+			<div class="col-md-12 event-holder">
+				<?php	$query = new WP_Query(
+						array(
+							'cat' => 1,
+							'post_status' => 'publish',
+							'post_per_page' => 3,
+							'order'           => 'DESC',
+						)
+					);
+										
+					if($query->post_count > 0){
+											
+						foreach($query->posts as  $event) {
+							$related_img = get_the_post_thumbnail_url($event->ID,'thumbnail');
+							$description = substr(wp_strip_all_tags($event->post_content), 0, 150).'...';
+							$permalink = get_permalink($related->ID);
+										
+							?>
+							<div class="event-content">
+							<div class="event-image">
+							<img src="<?php echo $related_img; ?>">
+							</div>
+								<h4 class="event-title"><?php  echo $event->post_title ;?></h4>
+								<p class="event-excerpt"><?php echo $description; ?></p>
+								<a href="<?php echo $permalink; ?>" class="btn btn-primary view-all">Read More</a>
+							</div>
+									
+							<?php 
+						}
+					} ?>
+					
+			</div>			
+		</div>
+		<?php
+   return do_shortcode(ob_get_clean());
+}
+add_shortcode('latest_tourism', 'latest_tourism');
+function latest_tourism($atts) { 
+	 ob_start();
+	 ?>
+		<div class="content-holder">
+			<div class="col-md-12">
+				<?php	$query = new WP_Query(
+						array(
+							'post_type' => 'tourism_post',
+							'post_status' => 'publish',
+							'post_per_page' => 1,
+							'order'           => 'DESC',
+						)
+					);
+										
+					if($query->post_count > 0){
+											
+						foreach($query->posts as  $event) {
+							$related_img = get_the_post_thumbnail_url($event->ID,'thumbnail');
+							$description = substr(wp_strip_all_tags($event->post_content), 0, 150).'...';
+							$permalink = get_permalink($related->ID);
+										
+							?>
+							
+						
+								<div id="video-holder">
+									<iframe width="100%" height="100%" src="<?php echo the_field('video_url',$event->ID);?>" controls></iframe>
+									
+								</div>
+								<h3 class="post-title"><?php  echo $event->post_title ;?></h3>
+							
+
+							
+									
+							<?php 
+						}
+					} ?>
+					
+			</div>			
+		</div>
+		<?php
    return do_shortcode(ob_get_clean());
 }
