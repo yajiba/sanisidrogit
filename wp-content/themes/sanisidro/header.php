@@ -51,8 +51,6 @@
 			<img id="logo" src="<?php the_field('logo', 'option'); ?>"/>
 			</div>
 			<nav id="site-navigation" class="main-navigation">
-			<a href="javascript:void(0)" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><img src="<?php echo get_template_directory_uri() ;?>/img/menu.png"/></a>
-				<button class="menu-toggle" id="menu-button" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'sanisidro' ); ?></button>
 				<?php
 				wp_nav_menu(
 					array(
@@ -64,12 +62,8 @@
 			</nav><!-- #site-navigation -->
 		</div>
 		<div id="top-search">
-			<form>
-			<div class="input-group mb-3">
-			<input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-			<button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-			</div>
-			</form>
+			<?php echo do_shortcode('[ivory-search id="173" title="AJAX Search Form"]'); ?>
+			
 		</div>		
 	</header><!-- #masthead -->
 	</div>

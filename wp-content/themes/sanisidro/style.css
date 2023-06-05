@@ -1237,7 +1237,7 @@ footer#colophon {
     justify-content: space-between;
 	align-items: center;
 }
-div#footer-nav ul#primary-menu {
+div#footer-nav ul#footer-menu {
     display: flex;
     list-style: none;
     padding: unset;
@@ -1249,7 +1249,7 @@ div#footer-nav ul li a {
     text-decoration: none;
     color: #fff;
 }
-div#footer-nav ul#primary-menu li {
+div#footer-nav ul#footer-menu li {
     /*flex-basis: 90px;
     text-align: center;*/
 	margin-right: 30px
